@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="" />
+    <title>Digital clock</title>
+    <style>
+        body {
+            background-color: black;
+            height: 75vh;
+            width: 85vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #clock {
+            margin: 8px;
+            background: black;
+            color: rgb(11, 239, 247);
+            box-shadow: 0 0 5px #03e9f4,
+                0 0 25px #03e9f4,
+                0 0 25px #03e9f4,
+                0 0 30px #03e9f4;
+            -webkit-box-reflect: below 10px linear-gradient(transparent, #0005);
+            position: absolute;
+            padding: 10px 20px;
+            font-size: 50px;
+            border-radius: 5px;
+        }
+
+        #dmy {
+            margin: 0px;
+            color: rgb(11, 239, 247);
+            font-size: 25px;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div>
+        <p id="dmy">Hello</p>
+        <h1 id="clock"></h1>
+    </div>
+    <script>
+        function updateClock() {
+            var now = new Date();
+            var hours = now.getHours().toString().padStart(2, '0')
+            var mins = now.getMinutes().toString().padStart(2, '0')
+            var secs = now.getSeconds().toString().padStart(2, '0')
+            var mrdm = "AM"
+            var date = now.getDate().toString().padStart(2, '0')
+            var monthNo = now.getMonth().toString()
+            var year = now.getFullYear()
+            if (monthNo == 0) {
+                month = "Jan";
+            } else if (monthNo == 1) {
+                month = "Feb";
+            } else if (monthNo == 2) {
+                month = "Mar";
+            } else if (monthNo == 3) {
+                month = "April";
+            } else if (monthNo == 4) {
+                month = "May";
+            } else if (monthNo == 5) {
+                month = "June";
+            } else if (monthNo == 6) {
+                month = "July";
+            } else if (monthNo == 7) {
+                month = "Aug";
+            } else if (monthNo == 8) {
+                month = "Sep";
+            } else if (monthNo == 9) {
+                month = "Oct";
+            } else if (monthNo == 10) {
+                month = "Nov";
+            } else if (monthNo == 11) {
+                month = "Dec"
+            }
+            if (hours > 12) {
+                hours = hours - 12;
+                mrdm = "PM";
+            }
+            var time = hours + " : " + mins + " : " + secs + "   " + mrdm
+            var dmy = date + " " + month + " " + year
+            document.getElementById('dmy').innerHTML = dmy
+            document.getElementById('clock').innerHTML = time
+        }
+        setInterval(updateClock, 10)
+
+        updateClock()
+    </script>
+</body>
+
+</html>
